@@ -37,24 +37,25 @@ fun WeatherSplashScreen(navController: NavController)
     val scale = remember{
         Animatable(0f)
     }
+    val defaultCity = "Konnagar"
     LaunchedEffect(
         key1 = true,
         block = {
             scale.animateTo(
-                targetValue = 0.9f,
+                targetValue = 0.8f,
 
 
                 animationSpec = tween(
                     durationMillis = 1000,
-                    delayMillis = 200,
+                    //delayMillis = 200,
                     easing = {
-                        OvershootInterpolator(8f)
+                        OvershootInterpolator(7f)
                             .getInterpolation(it)
                     }
                 )
             )
             delay(2000)
-            navController.navigate(WeatherScreens.MainScreen.name)
+            navController.navigate(WeatherScreens.MainScreen.name + "/$defaultCity")
         }
     )
     Surface (
@@ -62,12 +63,8 @@ fun WeatherSplashScreen(navController: NavController)
             .padding(15.dp)
             .size(330.dp)
             .scale(scale.value)
-            .background(Brush.verticalGradient(   listOf(Color(243, 84, 56, 255), Color(
-                157,
-                168,
-                58,
-                255
-            )
+            .background(Brush.verticalGradient(   listOf(Color(243, 84, 56, 255),
+                Color(157, 168, 58, 255)
             ))),
 
         shape = CircleShape,
